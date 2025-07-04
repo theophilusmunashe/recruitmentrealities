@@ -93,9 +93,9 @@ export function InputForm({ formAction, buttonCopy }: InputForm) {
   ]
 
   return (
-    <form className="flex flex-col gap-4 w-full relative" onSubmit={handleSubmit}>
+    <form className="flex flex-col gap-3 sm:gap-4 w-full relative" onSubmit={handleSubmit}>
       {/* Email Input */}
-      <div className="flex items-center justify-between gap-3 relative">
+      <div className="flex items-center justify-between gap-2 relative">
         <input
           name="email"
           type="email"
@@ -103,7 +103,7 @@ export function InputForm({ formAction, buttonCopy }: InputForm) {
           required
           value={email}
           className={clsx(
-            "flex-1 text-sm pl-4 pr-4 py-2 h-11 bg-gray-11/5 cursor-text rounded-full text-gray-12 placeholder:text-gray-9 border border-gray-11/10",
+            "flex-1 text-xs sm:text-sm pl-3 sm:pl-4 pr-3 sm:pr-4 py-2 h-10 sm:h-11 bg-gray-11/5 cursor-text rounded-full text-gray-12 placeholder:text-gray-9 border border-gray-11/10",
           )}
           disabled={inputDisabled}
           onChange={(e) => setEmail(e.target.value)}
@@ -115,7 +115,7 @@ export function InputForm({ formAction, buttonCopy }: InputForm) {
       </div>
       
       {/* Phone Input */}
-      <div className="flex items-center justify-between gap-3 relative">
+      <div className="flex items-center justify-between gap-2 relative">
         <input
           name="phone"
           type="tel"
@@ -123,7 +123,7 @@ export function InputForm({ formAction, buttonCopy }: InputForm) {
           required
           value={phone}
           className={clsx(
-            "flex-1 text-sm pl-4 pr-4 py-2 h-11 bg-gray-11/5 cursor-text rounded-full text-gray-12 placeholder:text-gray-9 border border-gray-11/10",
+            "flex-1 text-xs sm:text-sm pl-3 sm:pl-4 pr-3 sm:pr-4 py-2 h-10 sm:h-11 bg-gray-11/5 cursor-text rounded-full text-gray-12 placeholder:text-gray-9 border border-gray-11/10",
           )}
           disabled={inputDisabled}
           onChange={(e) => setPhone(e.target.value)}
@@ -134,9 +134,9 @@ export function InputForm({ formAction, buttonCopy }: InputForm) {
       </div>
 
       {/* User Type Selection */}
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-2">
         <p className="text-sm text-gray-11 font-medium">I am a:</p>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
           {userTypeOptions.map((option) => (
             <button
               key={option.value}
@@ -144,16 +144,16 @@ export function InputForm({ formAction, buttonCopy }: InputForm) {
               onClick={() => setUserType(option.value)}
               disabled={inputDisabled}
               className={clsx(
-                "flex items-center justify-center gap-2 px-4 py-3 rounded-xl border-2 transition-all duration-200 text-sm font-medium",
-                "hover:shadow-md hover:scale-[1.02] active:scale-[0.98]",
+                "flex items-center justify-center gap-1 px-2 py-2 rounded-xl border transition-all duration-200 text-xs sm:text-sm font-medium",
+                "hover:shadow-md hover:scale-[1.01] active:scale-[0.99]",
                 userType === option.value
-                  ? "border-gray-12 bg-gray-12 text-gray-1 shadow-lg"
+                  ? "border-gray-12 bg-gray-12 text-gray-1 shadow-md"
                   : "border-gray-11/20 bg-gray-11/5 text-gray-12 hover:border-gray-11/40 hover:bg-gray-11/10",
                 inputDisabled && "opacity-50 cursor-not-allowed hover:scale-100"
               )}
             >
-              <span className="text-lg">{option.icon}</span>
-              <span>{option.label}</span>
+              <span className="text-base sm:text-lg">{option.icon}</span>
+              <span className="whitespace-nowrap overflow-hidden text-ellipsis">{option.label}</span>
             </button>
           ))}
         </div>
@@ -170,8 +170,8 @@ export function InputForm({ formAction, buttonCopy }: InputForm) {
         type="submit"
         disabled={inputDisabled || !userType}
         className={clsx(
-          "w-full h-12 px-6 bg-gray-12 text-gray-1 text-sm rounded-full font-medium flex gap-2 items-center justify-center transition-all duration-200",
-          "hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]",
+          "w-full h-10 sm:h-12 px-4 sm:px-6 bg-gray-12 text-gray-1 text-xs sm:text-sm rounded-full font-medium flex gap-2 items-center justify-center transition-all duration-200",
+          "hover:shadow-md hover:scale-[1.01] active:scale-[0.98]",
           "disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100",
           {
             "bg-gray-12 text-gray-2": state === "loading",

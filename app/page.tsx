@@ -36,28 +36,28 @@ export default function Home() {
   return (
     <WaitlistWrapper>
       {/* Countdown Timer */}
-      <div className="w-full -mt-4">
-        <div className="text-center space-y-3">
-          <h3 className="text-lg font-semibold text-slate-12">
+      <div className="w-full -mt-2 sm:-mt-4">
+        <div className="text-center space-y-2 sm:space-y-3">
+          <h3 className="text-base sm:text-lg font-semibold text-slate-12">
             🚀 Recruitment Realities 1.0 Launch
           </h3>
-          <div className="bg-gradient-to-r from-orange-50 to-white dark:from-slate-800 dark:to-slate-700 rounded-2xl p-6 border border-orange-200 dark:border-slate-600">
+          <div className="bg-gradient-to-r from-orange-50 to-white dark:from-slate-800 dark:to-slate-700 rounded-2xl p-3 sm:p-6 border border-orange-200 dark:border-slate-600">
             <CountdownTimer targetDate="2025-07-22T00:00:00Z" />
           </div>
         </div>
       </div>
       
       {/* Heading */}
-      <div className="space-y-1 mt-6">
-        <h1 className="text-2xl sm:text-3xl font-medium text-slate-12 whitespace-pre-wrap text-pretty">
+      <div className="space-y-1 mt-4 sm:mt-6">
+        <h1 className="text-xl sm:text-2xl md:text-3xl font-medium text-slate-12 text-pretty break-words">
           {waitlistContent.title}
         </h1>
-        <div className="text-slate-10 tracking-tight text-pretty">
-          <p>{waitlistContent.subtitle}</p>
+        <div className="text-sm sm:text-base text-slate-10 tracking-tight text-pretty">
+          <p className="break-words">{waitlistContent.subtitle}</p>
         </div>
       </div>
       {/* Form */}
-      <div className="px-1 flex flex-col w-full self-stretch">
+      <div className="px-0 sm:px-1 flex flex-col w-full self-stretch">
         <InputForm
           buttonCopy={{
             idle: waitlistContent.button.idle,

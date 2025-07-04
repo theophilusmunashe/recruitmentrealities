@@ -17,7 +17,7 @@ export function NewsletterDownloadButton() {
   return (
     <button
       onClick={handleDownload}
-      className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 dark:bg-white dark:hover:bg-gray-100 text-black font-medium py-3 px-6 rounded-full transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2 dark:border dark:border-gray-300"
+      className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 dark:bg-white dark:hover:bg-gray-100 text-black font-medium py-2 sm:py-3 px-4 sm:px-6 rounded-full transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-[1.01] active:scale-[0.99] flex items-center justify-center gap-2 dark:border dark:border-gray-300 text-xs sm:text-sm"
     >
       <span>📥</span>
       <span>Download Our Newsletter</span>

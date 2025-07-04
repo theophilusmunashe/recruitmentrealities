@@ -55,55 +55,55 @@ export function CountdownTimer({ targetDate }: CountdownTimerProps) {
   if (!mounted) {
     // Return a placeholder during SSR to avoid hydration mismatch
     return (
-      <div className="flex justify-center items-center space-x-4 sm:space-x-6">
+      <div className="flex justify-center items-center space-x-2 sm:space-x-4 md:space-x-6">
         <div className="text-center">
-          <div className="bg-white rounded-xl p-3 shadow-lg border border-orange-200 dark:border-slate-600 w-16 h-16 flex items-center justify-center">
-            <div className="text-2xl font-bold text-black animate-pulse">--</div>
+          <div className="bg-white rounded-xl p-2 sm:p-3 shadow-md sm:shadow-lg border border-orange-200 dark:border-slate-600 w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center">
+            <div className="text-lg sm:text-2xl font-bold text-black animate-pulse">--</div>
           </div>
-          <div className="text-xs sm:text-sm text-slate-10 dark:text-slate-11 mt-2 font-medium">Days</div>
+          <div className="text-xs text-slate-10 dark:text-slate-11 mt-1 sm:mt-2 font-medium">Days</div>
         </div>
         <div className="text-center">
-          <div className="bg-white rounded-xl p-3 shadow-lg border border-orange-200 dark:border-slate-600 w-16 h-16 flex items-center justify-center">
-            <div className="text-2xl font-bold text-black animate-pulse">--</div>
+          <div className="bg-white rounded-xl p-2 sm:p-3 shadow-md sm:shadow-lg border border-orange-200 dark:border-slate-600 w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center">
+            <div className="text-lg sm:text-2xl font-bold text-black animate-pulse">--</div>
           </div>
-          <div className="text-xs sm:text-sm text-slate-10 dark:text-slate-11 mt-2 font-medium">Hours</div>
+          <div className="text-xs text-slate-10 dark:text-slate-11 mt-1 sm:mt-2 font-medium">Hours</div>
         </div>
         <div className="text-center">
-          <div className="bg-white rounded-xl p-3 shadow-lg border border-orange-200 dark:border-slate-600 w-16 h-16 flex items-center justify-center">
-            <div className="text-2xl font-bold text-black animate-pulse">--</div>
+          <div className="bg-white rounded-xl p-2 sm:p-3 shadow-md sm:shadow-lg border border-orange-200 dark:border-slate-600 w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center">
+            <div className="text-lg sm:text-2xl font-bold text-black animate-pulse">--</div>
           </div>
-          <div className="text-xs sm:text-sm text-slate-10 dark:text-slate-11 mt-2 font-medium">Minutes</div>
+          <div className="text-xs text-slate-10 dark:text-slate-11 mt-1 sm:mt-2 font-medium">Min</div>
         </div>
         <div className="text-center">
-          <div className="bg-white rounded-xl p-3 shadow-lg border border-orange-200 dark:border-slate-600 w-16 h-16 flex items-center justify-center">
-            <div className="text-2xl font-bold text-black animate-pulse">--</div>
+          <div className="bg-white rounded-xl p-2 sm:p-3 shadow-md sm:shadow-lg border border-orange-200 dark:border-slate-600 w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center">
+            <div className="text-lg sm:text-2xl font-bold text-black animate-pulse">--</div>
           </div>
-          <div className="text-xs sm:text-sm text-slate-10 dark:text-slate-11 mt-2 font-medium">Seconds</div>
+          <div className="text-xs text-slate-10 dark:text-slate-11 mt-1 sm:mt-2 font-medium">Sec</div>
         </div>
       </div>
     );
   }
 
   const timeUnits = [
-    { label: "Days", value: timeLeft.days },
-    { label: "Hours", value: timeLeft.hours },
-    { label: "Minutes", value: timeLeft.minutes },
-    { label: "Seconds", value: timeLeft.seconds },
+    { label: "Days", shortLabel: "Days", value: timeLeft.days },
+    { label: "Hours", shortLabel: "Hrs", value: timeLeft.hours },
+    { label: "Minutes", shortLabel: "Min", value: timeLeft.minutes },
+    { label: "Seconds", shortLabel: "Sec", value: timeLeft.seconds },
   ];
 
   return (
-    <div className="flex justify-center items-center space-x-4 sm:space-x-6">
+    <div className="flex justify-center items-center space-x-2 sm:space-x-4 md:space-x-6">
       {timeUnits.map((unit, index) => (
         <div key={unit.label} className="text-center">
-          <div className="bg-white rounded-xl p-3 shadow-lg border border-orange-200 dark:border-slate-600">
-            <div className="text-2xl sm:text-3xl font-bold text-black min-w-[3rem] tabular-nums">
+          <div className="bg-white rounded-xl p-2 sm:p-3 shadow-md sm:shadow-lg border border-orange-200 dark:border-slate-600 w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center">
+            <div className="text-lg sm:text-2xl font-bold text-black tabular-nums">
               {unit.value.toString().padStart(2, '0')}
             </div>
           </div>
-          <div className="text-xs sm:text-sm text-slate-10 dark:text-slate-11 mt-2 font-medium">
-            {unit.label}
+          <div className="text-xs text-slate-10 dark:text-slate-11 mt-1 sm:mt-2 font-medium">
+            <span className="hidden sm:inline">{unit.label}</span>
+            <span className="inline sm:hidden">{unit.shortLabel}</span>
           </div>
-
         </div>
       ))}
     </div>
