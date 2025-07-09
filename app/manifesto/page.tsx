@@ -29,11 +29,16 @@ export const metadata: Metadata = {
 // Static manifesto content - EDIT THESE VALUES
 const manifestoContent = {
   body: [
-    "The recruiting industry is broken. For too long, candidates have been treated as commodities, reduced to keywords on a resume and filtered by algorithms that miss the human story behind every career.",
-    "We believe that every person deserves to be seen, heard, and valued for their unique talents and aspirations. Recruiting should be about connection, not just collection of data points.",
-    "At WeNext Africa, we're building a platform that puts humanity back into hiring. We're creating tools that help recruiters see beyond the resume, understand the person behind the application, and make meaningful connections that benefit both candidates and companies.",
-    "This isn't just about finding jobs or filling positions. It's about building careers, fostering growth, and creating opportunities that transform lives.",
-    "Join us in reimagining what recruiting can be through conversations about Recruitment Realities. Together, we'll build a future where every talent finds their place, and every company finds the people who will drive their success.",
+    "**The recruiting field is broken**. Or **Is It**. For too long, candidates have felt they are treated as **commodities**. Reduced to **statistics**. Known and referred to by \"keywords on their resume\". Worst of all **filtered by algorithms** that miss the **human story** behind every applicant and every position.",
+    "We at **WeNext Africa** strongly believe that every person deserves to be seen, heard, and valued for their **unique talents, skills, attributes diversity and aspirations**. Recruiting should therefore, be about **connection of and not just collection of data points**.",
+    "At WeNext Africa, we are building a **solution that puts humanity back into hiring**. We're creating **tools and a platform** that help recruiters **see beyond the resume**, and **understand the person behind the application**, and **make meaningful connections that benefit both candidates and companies**.",
+    "The solution comes as **a tool for candidates** to **upskill**, increase their **employability level** and help them become **industry-ready**. This is more than a **mere job board,** it leverages on AI to rank candidates and match them to potential employers and vice versa.",
+    "This **revolution and innovation** is not just about **finding jobs or filling positions**. It's about **building careers, fostering growth, and creating opportunities that transform lives**.",
+    "WeNext Africa brings you **Recruitment Realities**.",
+    "Join us in **reimagining what recruiting can be through conversations**.",
+    "These are **candid dialogue episodes**, which **highlight issues and challenges,** as well as **create a robust platform to collectively co-create sustainable solutions**.",
+    "Thus is an **open invitation** to all **right minded and progressive job seekers, talent experts and employers** to **come forward and we build a future** where every **genuine talent finds their place**, and every **employer finds the right talent mix** who will drive their success.",
+    "**The next best thing in Talent Processing**",
   ],
   author: {
     signatureName: "Geoffrey Kambare",
@@ -54,7 +59,14 @@ export default function Manifesto() {
               key={index} 
               className="tracking-tight leading-[1.6] mb-3 last:mb-0"
             >
-              {paragraph}
+              {paragraph.split(/(\*\*.*?\*\*)/).map((part, partIndex) => {
+                if (part.startsWith('**') && part.endsWith('**')) {
+                  // Extract the text between ** markers and render it bold
+                  const boldText = part.slice(2, -2);
+                  return <strong key={partIndex}>{boldText}</strong>;
+                }
+                return part;
+              })}
             </p>
           ))}
         </div>
