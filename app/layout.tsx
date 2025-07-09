@@ -31,6 +31,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.className} antialiased max-w-screen min-h-svh bg-slate-1 text-slate-12 opacity-100 duration-75 transition-opacity`}
+        suppressHydrationWarning
       >
         <Providers
           defaultTheme={appSettings.defaultTheme}

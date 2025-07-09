@@ -1,4 +1,5 @@
-import { NextRequest, NextResponse } from 'next/server';
+'use server';
+
 import nodemailer from 'nodemailer';
 
 // Email configuration
@@ -21,27 +22,44 @@ const createEmailTransport = () => {
   return nodemailer.createTransport(config);
 };
 
-export async function POST(request: NextRequest) {
+export async function submitWaitlistForm(formData: FormData) {
   try {
-    const { email, phone, userType } = await request.json();
-
+    // Extract form data
+    const email = formData.get('email')?.toString();
+    const phone = formData.get('phone')?.toString();
+    const userType = formData.get('userType')?.toString();
+    
     // Validate required fields
-    if (!email || !userType) {
-      return NextResponse.json(
-        { success: false, error: 'Email and user type are required' },
-        { status: 400 }
-      );
+    if (!email || !email.includes('@')) {
+      return {
+        success: false,
+        error: 'Please enter a valid email address',
+      };
     }
-
+    
+    if (!phone || phone.length < 8) {
+      return {
+        success: false,
+        error: 'Please enter a valid phone number',
+      };
+    }
+    
+    if (!userType || !['job-seeker', 'hr-expert', 'recruiter'].includes(userType)) {
+      return {
+        success: false,
+        error: 'Please select your role',
+      };
+    }
+    
     // Create transporter
     const transporter = createEmailTransport();
-
+    
     // Format user type for display
     let formattedUserType = userType;
     if (userType === 'job-seeker') formattedUserType = 'Job Seeker';
     if (userType === 'hr-expert') formattedUserType = 'HR Expert/Pro';
     if (userType === 'recruiter') formattedUserType = 'Recruiter';
-
+    
     // Email content
     const mailOptions = {
       from: process.env.SMTP_FROM || process.env.SMTP_USER,
@@ -88,17 +106,17 @@ export async function POST(request: NextRequest) {
         This email was automatically generated from your Recruitment Realities waitlist form.
       `
     };
-
+    
     // Send email
     await transporter.sendMail(mailOptions);
-
-    return NextResponse.json({ 
-      success: true, 
+    
+    return { 
+      success: true,
       message: 'Email sent successfully' 
-    });
-
+    };
+    
   } catch (error) {
-    console.error('Email sending error:', error);
+    console.error('Waitlist signup error:', error);
     
     // Provide more detailed error information for debugging
     const errorMessage = error instanceof Error 
@@ -107,13 +125,10 @@ export async function POST(request: NextRequest) {
     
     console.error('Detailed error:', errorMessage);
     
-    return NextResponse.json(
-      { 
-        success: false, 
-        error: 'Failed to send email. Please try again later.',
-        details: process.env.NODE_ENV === 'development' ? errorMessage : undefined
-      },
-      { status: 500 }
-    );
+    return {
+      success: false,
+      error: 'Failed to send email. Please try again later.',
+      details: process.env.NODE_ENV === 'development' ? errorMessage : undefined
+    };
   }
 }
